@@ -30,7 +30,7 @@ jobs:
       - name: Clone Submodules
         run: git submodule update --init --recursive
 
-      - name: Debug: List files in build directory
+      - name: List files in build directory
         run: ls -R .
       
       - name: Install dependencies

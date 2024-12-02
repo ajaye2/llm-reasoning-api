@@ -26,14 +26,17 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-      
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      
+
       - name: Clone Submodules
         run: git submodule update --init --recursive
 
-      - name: Install editable dependencies
+      - name: Debug: List files in build directory
+        run: ls -R .
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Debug: Install editable dependencies
         run: ./setup_dependencies.sh
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)

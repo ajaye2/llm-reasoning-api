@@ -1,2 +1,6 @@
 fastapi
 uvicorn[standard]
+azure-identity
+openai
+requests
+python-dotenv

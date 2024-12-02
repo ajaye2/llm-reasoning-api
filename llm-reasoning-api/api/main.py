@@ -1,11 +1,20 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
+from reasoners.lm import OpenAIModel
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 app = FastAPI()
 
+MODEL_NAME = os.getenv("MODEL_NAME")
+
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the LLM Reasoning API"}
+    model = OpenAIModel(model=MODEL_NAME, use_azure=True)
+    output = model.generate(["Hello, world!"]).text[0].strip()
+    return {"message": output}
+
 
 @app.get("/stream")
 async def stream_intermediate_states():

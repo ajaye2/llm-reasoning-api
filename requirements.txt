@@ -1,6 +1,7 @@
 fastapi
 uvicorn[standard]
-azure-identity
+azure-core==1.32.0
+azure-identity==1.19.0
 openai
 requests
 python-dotenv

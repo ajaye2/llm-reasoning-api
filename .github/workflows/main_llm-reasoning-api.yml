@@ -53,8 +53,7 @@ jobs:
           fi
           cp requirements.txt deployment/
           cp setup_dependencies.sh deployment/
-          cd deployment 
-          zip -r release.zip .
+          cd deployment && zip -r ../release.zip .
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
@@ -80,11 +79,9 @@ jobs:
           name: python-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip -d .
+        run: unzip release.zip
 
-      - name: Verify deployment directory
-        run: ls -R .
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:

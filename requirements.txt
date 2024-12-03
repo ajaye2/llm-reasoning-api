@@ -4,3 +4,4 @@ azure-identity
 openai
 requests
 python-dotenv
+-e ./llm-reasoning-api/api/algorithms/llm-reasoners

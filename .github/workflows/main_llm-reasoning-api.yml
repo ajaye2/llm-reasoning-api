@@ -44,16 +44,10 @@ jobs:
       - name: Prepare deployment artifact
         run: |
           mkdir deployment
-          # Copy the api/ directory
-          if [ -d "llm-reasoning-api/api" ]; then
-            cp -R llm-reasoning-api/api/ deployment/
-          else
-            echo "ERROR: api/ directory not found!"
-            exit 1
-          fi
+          cp -R llm-reasoning-api/api/ deployment/
           cp requirements.txt deployment/
           cp setup_dependencies.sh deployment/
-          cd deployment && zip -r ../release.zip .
+          cd deployment && zip -r ../release.zip ..
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4

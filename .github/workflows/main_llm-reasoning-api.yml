@@ -44,6 +44,7 @@ jobs:
       - name: Prepare deployment artifact
         run: |
           mkdir deployment
+
           # Copy the api/ directory
           if [ -d "llm-reasoning-api/api" ]; then
             cp -R llm-reasoning-api/api/ deployment/
@@ -51,6 +52,15 @@ jobs:
             echo "ERROR: api/ directory not found!"
             exit 1
           fi
+
+          # Copy the reasoners module
+          if [ -d "llm-reasoning-api/api/algorithms/llm-reasoners/reasoners" ]; then
+            cp -R llm-reasoning-api/api/algorithms/llm-reasoners/reasoners/ deployment/reasoners/
+          else
+            echo "ERROR: reasoners/ directory not found!"
+            exit 1
+          fi
+
           cp requirements.txt deployment/
           cp setup_dependencies.sh deployment/
           cd deployment && zip -r ../release.zip .
